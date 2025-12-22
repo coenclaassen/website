@@ -1,5 +1,6 @@
 ---
 import { NAVIGATION_LINKS } from '../utils/constants';
+import { getUrl } from '../utils/url';
 ---
 
 <header>
@@ -7,7 +8,7 @@ import { NAVIGATION_LINKS } from '../utils/constants';
   <div class="desktop-menu" id="desktop-menu">
     <nav>
       {NAVIGATION_LINKS.map((link) => (
-        <a href={link.href} class="thin" target={link.external ? "_blank" : undefined} rel={link.external ? "noopener noreferrer" : undefined}>
+        <a href={link.external ? link.href : getUrl(link.href === '/' ? '' : link.href.slice(1))} class="thin" target={link.external ? "_blank" : undefined} rel={link.external ? "noopener noreferrer" : undefined}>
           {link.label}
         </a>
       ))}
@@ -15,7 +16,7 @@ import { NAVIGATION_LINKS } from '../utils/constants';
   </div>
   <div class="mobile-menu" id="mobile-menu">
     {NAVIGATION_LINKS.map((link) => (
-      <a href={link.href} class="thin" target={link.external ? "_blank" : undefined} rel={link.external ? "noopener noreferrer" : undefined}>
+      <a href={link.external ? link.href : getUrl(link.href === '/' ? '' : link.href.slice(1))} class="thin" target={link.external ? "_blank" : undefined} rel={link.external ? "noopener noreferrer" : undefined}>
         {link.label}
       </a>
     ))}

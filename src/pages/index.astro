@@ -5,6 +5,9 @@ import Footer from "../components/Footer.astro";
 import LinkedInIcon from "../components/icons/LinkedInIcon.astro";
 import EmailIcon from "../components/icons/EmailIcon.astro";
 import { CURRENT_YEAR, LINKEDIN_URL, EMAIL, TOTAL_SLIDES, SHOWN_SLIDES, ROTATION_DURATION_MS, SLIDE_DURATION_MS } from "../utils/constants";
+import { getUrl } from "../utils/url";
+
+const BASE_URL = import.meta.env.BASE_URL;
 ---
 
 <style>
@@ -480,7 +483,7 @@ import { CURRENT_YEAR, LINKEDIN_URL, EMAIL, TOTAL_SLIDES, SHOWN_SLIDES, ROTATION
   <main style="position: relative;">
     <section class="hero-section">
       <video class="hero-video" autoplay muted loop playsinline>
-        <source src="/video.mp4" type="video/mp4">
+        <source src={`${BASE_URL}video.mp4`} type="video/mp4">
         Your browser does not support the video tag.
       </video>
       <div class="hero-content">
@@ -502,7 +505,7 @@ import { CURRENT_YEAR, LINKEDIN_URL, EMAIL, TOTAL_SLIDES, SHOWN_SLIDES, ROTATION
       <p class="post-h3 thin spacer-4">I talk to the most interesting people I can find and share what curiosity uncovers - one coffee at the time.</p>
       <p class="cta spacer-6"><span class="bold">Want to follow along?</span><br class="desktop-only"><span class="thin"> or are you someone I should meet?</span></p>
       <div class="buttons-horizontal spacer-4">
-        <a href="/coffee" class="btn-grey thin">Explore experiment</a>
+        <a href={getUrl("coffee")} class="btn-grey thin">Explore experiment</a>
         <a href={LINKEDIN_URL} class="btn-black thin" target="_blank" rel="noopener noreferrer">
           <LinkedInIcon />
           Let's connect
@@ -515,7 +518,7 @@ import { CURRENT_YEAR, LINKEDIN_URL, EMAIL, TOTAL_SLIDES, SHOWN_SLIDES, ROTATION
         {SHOWN_SLIDES.map((slideNum, i) => (
           <img 
             class={`slide ${i === 0 ? 'active' : ''}`}
-            src={`/slides/slide${String(slideNum).padStart(2, '0')}.png`}
+            src={`${BASE_URL}slides/slide${String(slideNum).padStart(2, '0')}.png`}
             alt={`Coen Claassen portfolio work ${slideNum}`}
             data-slide-index={i}
             loading={i < 3 ? "eager" : "lazy"}

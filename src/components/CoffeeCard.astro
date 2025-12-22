@@ -1,11 +1,13 @@
 ---
+import { getUrl } from "../utils/url";
+
 const { entry } = Astro.props;
 const { id, name, title, paragraph2Body, paragraph1Body } = entry.data;
 const fullText = paragraph2Body || paragraph1Body || "";
 const descriptionText = fullText.length > 200 ? fullText.slice(0, 200) + "..." : fullText;
 ---
 
-<a class="card" href={`/coffee/${id}`}>
+<a class="card" href={getUrl(`coffee/${id}`)}>
   <h1 class="post-h4 bold">{title}<br><span class="thin">{name}</span></h1>
   {descriptionText && <p class="p-grid thin spacer-2">{descriptionText}</p>}
 </a>

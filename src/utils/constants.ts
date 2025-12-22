@@ -15,7 +15,7 @@ export const NAVIGATION_LINKS = [
   { href: '/work', label: 'Work' },
   { href: '/about', label: 'About' },
   { href: '/coffee', label: 'Curiosity Coffee' },
-  { href: '/CoenClaassen.pdf', label: 'Resume', external: true },
+  { href: '/CoenClaassen.pdf', label: 'Resume', external: false },
   { href: 'mailto:coenclaassen@gmail.com', label: 'Contact' },
 ] as const;
 

@@ -5,6 +5,10 @@ import Footer from "../../components/Footer.astro";
 import LinkedInIcon from "../../components/icons/LinkedInIcon.astro";
 import { getPrevNextEntries, parseMarkdown } from "../../utils/coffee";
 import { CURRENT_YEAR, LINKEDIN_URL } from "../../utils/constants";
+import { getUrl } from "../../utils/url";
+
+const BASE_URL = import.meta.env.BASE_URL;
+---
 
 export async function getStaticPaths() {
   const entries = await getCollection("coffee");
@@ -37,10 +41,10 @@ const sections = [
   description={pageDescription}
 >
   <header class="coffee-header">
-    <a href="/coffee">
-      <img src="/icons/curiosityCoffee.svg" alt="Curiosity Coffee" class="coffee-logo" />
+    <a href={`${BASE_URL}coffee`}>
+      <img src={`${BASE_URL}icons/curiosityCoffee.svg`} alt="Curiosity Coffee" class="coffee-logo" />
     </a>
-    <a href="/coffee" class="menu">More</a>
+    <a href={`${BASE_URL}coffee`} class="menu">More</a>
   </header>
 
   <main>
@@ -48,15 +52,15 @@ const sections = [
     <h1 class="post-h1 bold spacer-5">{d.title}</h1>
     <h1 class="post-h1 thin spacer-4">{d.name}</h1>
     
-    <div class="nav-links spacer-5">
+      <div class="nav-links spacer-5">
       <div class="nav-column nav-left">
-        {prevEntry && <a href={`/coffee/${prevEntry.data.id}`} class="footer thin">&lt; #{String(prevEntry.data.id).padStart(2, "0")}</a>}
+        {prevEntry && <a href={getUrl(`coffee/${prevEntry.data.id}`)} class="footer thin">&lt; #{String(prevEntry.data.id).padStart(2, "0")}</a>}
       </div>
       <div class="nav-column nav-center">
         <span class="post-h1 thin">#{String(d.id).padStart(2, "0")}</span>
       </div>
       <div class="nav-column nav-right">
-        {nextEntry && <a href={`/coffee/${nextEntry.data.id}`} class="footer thin">#{String(nextEntry.data.id).padStart(2, "0")} &gt;</a>}
+        {nextEntry && <a href={getUrl(`coffee/${nextEntry.data.id}`)} class="footer thin">#{String(nextEntry.data.id).padStart(2, "0")} &gt;</a>}
       </div>
     </div>
     
@@ -82,18 +86,18 @@ const sections = [
     
     <div class="nav-links nav-links-bottom spacer-6">
       <div class="nav-column nav-left">
-        {prevEntry && <a href={`/coffee/${prevEntry.data.id}`} class="footer thin">&lt; #{String(prevEntry.data.id).padStart(2, "0")}</a>}
+        {prevEntry && <a href={getUrl(`coffee/${prevEntry.data.id}`)} class="footer thin">&lt; #{String(prevEntry.data.id).padStart(2, "0")}</a>}
       </div>
       <div class="nav-column nav-center">
         <h2 class="post-h2 bold" style="text-align: left;">Want to go deeper?<br class="desktop-only" /> <span class="thin">Or talk it through?</span></h2>
       </div>
       <div class="nav-column nav-right">
-        {nextEntry && <a href={`/coffee/${nextEntry.data.id}`} class="footer thin">#{String(nextEntry.data.id).padStart(2, "0")} &gt;</a>}
+        {nextEntry && <a href={getUrl(`coffee/${nextEntry.data.id}`)} class="footer thin">#{String(nextEntry.data.id).padStart(2, "0")} &gt;</a>}
       </div>
     </div>
     
     <div class="buttons-container spacer-4">
-      <a href="/coffee" class="btn-grey thin">Explore Curiosity Coffee</a>
+      <a href={getUrl("coffee")} class="btn-grey thin">Explore Curiosity Coffee</a>
       <a href={LINKEDIN_URL} class="btn-black thin" target="_blank" rel="noopener noreferrer">
         <LinkedInIcon />
         Let's connect

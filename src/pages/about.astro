@@ -4,6 +4,7 @@ import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import LinkedInIcon from "../components/icons/LinkedInIcon.astro";
 import { CURRENT_YEAR, LINKEDIN_URL } from "../utils/constants";
+import { getUrl } from "../utils/url";
 ---
 
 <BaseLayout 
@@ -41,8 +42,8 @@ import { CURRENT_YEAR, LINKEDIN_URL } from "../utils/constants";
     <section class="spacer-6">
       <h1 class="cta bold">I find a path to yes<br class="desktop-only"> and build what proves it.</h1>
       <div class="buttons-stacked spacer-4">
-        <a href="/" class="btn-grey thin">See my work</a>
-        <a href="/work" class="btn-grey thin">How I work</a>
+        <a href={getUrl("")} class="btn-grey thin">See my work</a>
+        <a href={getUrl("work")} class="btn-grey thin">How I work</a>
         <a href={LINKEDIN_URL} class="btn-black thin" target="_blank" rel="noopener noreferrer">
           <LinkedInIcon />
           Connect

@@ -2,6 +2,9 @@
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import Footer from "../../components/Footer.astro";
 import { CURRENT_YEAR } from "../../utils/constants";
+import { getUrl } from "../../utils/url";
+
+const BASE_URL = import.meta.env.BASE_URL;
 ---
 
 <BaseLayout 
@@ -9,10 +12,10 @@ import { CURRENT_YEAR } from "../../utils/constants";
   description="An ongoing experiment talking to interesting builders and sharing insights online to sharpen thinking build networks and explore new tools."
 >
   <header class="coffee-header">
-    <a href="/coffee">
-      <img src="/icons/curiosityCoffee.svg" alt="Curiosity Coffee" class="coffee-logo" />
+    <a href={getUrl("coffee")}>
+      <img src={`${BASE_URL}icons/curiosityCoffee.svg`} alt="Curiosity Coffee" class="coffee-logo" />
     </a>
-    <a href="/coffee" class="menu">More</a>
+    <a href={getUrl("coffee")} class="menu">More</a>
   </header>
 
   <main>
@@ -24,7 +27,7 @@ import { CURRENT_YEAR } from "../../utils/constants";
       <p class="post-h4 thin spacer-3">After each coffee I ask who I should talk to next. They give an intro and my curiosity continues.</p>
     </div>
     
-    <a href="/about" class="btn-grey thin spacer-4">About me</a>
+    <a href={getUrl("about")} class="btn-grey thin spacer-4">About me</a>
   </main>
 
   <Footer year={CURRENT_YEAR} class="spacer-7" />
