@@ -1,0 +1,82 @@
+---
+import CoffeeCard from "./CoffeeCard.astro";
+const { entries, class: className } = Astro.props;
+---
+
+<div class={`coffee-grid-container ${className || ''}`}>
+  <div class="grid" id="coffee-grid">
+    {entries.map((entry, index) => (
+      <div class="coffee-card-wrapper" data-index={index}>
+        <CoffeeCard entry={entry} />
+      </div>
+    ))}
+  </div>
+  
+  {entries.length > 3 && (
+    <div class="load-more-container spacer-4">
+      <button type="button" class="btn-grey thin" id="load-more-btn">
+        Load more
+      </button>
+    </div>
+  )}
+</div>
+
+<script>
+  (function() {
+    const grid = document.getElementById('coffee-grid');
+    const loadMoreBtn = document.getElementById('load-more-btn');
+    
+    if (!grid || !loadMoreBtn) return;
+    
+    const allCards = Array.from(grid.querySelectorAll('.coffee-card-wrapper'));
+    const getCount = () => window.innerWidth >= 768 ? 6 : 3;
+    
+    let visibleCount = getCount();
+    
+    function updateVisibility() {
+      allCards.forEach((card, index) => {
+        card.classList.toggle('visible', index < visibleCount);
+      });
+      loadMoreBtn.style.display = visibleCount >= allCards.length ? 'none' : '';
+    }
+    
+    updateVisibility();
+    
+    loadMoreBtn.addEventListener('click', () => {
+      visibleCount = Math.min(visibleCount + getCount(), allCards.length);
+      updateVisibility();
+    });
+  })();
+</script>
+
+<style>
+.coffee-grid-container {
+  width: 100%;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+}
+
+.coffee-card-wrapper {
+  display: none; /* Hidden by default, JavaScript will show visible ones */
+}
+
+.load-more-container {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.coffee-card-wrapper.visible {
+  display: block;
+}
+
+@media (min-width: 768px) {
+  .grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 3rem 2rem;
+  }
+}
+</style>

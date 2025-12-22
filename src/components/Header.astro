@@ -1,0 +1,29 @@
+---
+import { NAVIGATION_LINKS } from '../utils/constants';
+---
+
+<header>
+  <button type="button" class="menu-toggle" id="menu-toggle" aria-label="Toggle navigation menu">☰</button>
+  <div class="desktop-menu" id="desktop-menu">
+    <nav>
+      {NAVIGATION_LINKS.map((link) => (
+        <a href={link.href} class="thin" target={link.external ? "_blank" : undefined} rel={link.external ? "noopener noreferrer" : undefined}>
+          {link.label}
+        </a>
+      ))}
+    </nav>
+  </div>
+  <div class="mobile-menu" id="mobile-menu">
+    {NAVIGATION_LINKS.map((link) => (
+      <a href={link.href} class="thin" target={link.external ? "_blank" : undefined} rel={link.external ? "noopener noreferrer" : undefined}>
+        {link.label}
+      </a>
+    ))}
+  </div>
+</header>
+
+<script>
+  import { initMenu } from '../utils/menu';
+  initMenu();
+</script>
+

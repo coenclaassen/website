@@ -1,0 +1,44 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Footer from "../../components/Footer.astro";
+import { CURRENT_YEAR } from "../../utils/constants";
+---
+
+<BaseLayout 
+  title="Curiosity Coffee · About"
+  description="An ongoing experiment talking to interesting builders and sharing insights online to sharpen thinking build networks and explore new tools."
+>
+  <header class="coffee-header">
+    <a href="/coffee">
+      <img src="/icons/curiosityCoffee.svg" alt="Curiosity Coffee" class="coffee-logo" />
+    </a>
+    <a href="/coffee" class="menu">More</a>
+  </header>
+
+  <main>
+    <h1 class="bold spacer-7">How far can curiosity really go? <span class="thin">I'm finding out - one coffee at the time.</span></h1>
+    
+    <div class="about-text">
+      <p class="post-h4 thin spacer-4">In this experiment I talk to the most interesting people I can find and share what curiosity uncovers.</p>
+      
+      <p class="post-h4 thin spacer-3">After each coffee I ask who I should talk to next. They give an intro and my curiosity continues.</p>
+    </div>
+    
+    <a href="/about" class="btn-grey thin spacer-4">About me</a>
+  </main>
+
+  <Footer year={CURRENT_YEAR} class="spacer-7" />
+</BaseLayout>
+
+<style>
+  .about-text {
+    max-width: 100%;
+  }
+
+  @media (min-width: 768px) {
+    .about-text {
+      max-width: 800px;
+    }
+  }
+</style>
+

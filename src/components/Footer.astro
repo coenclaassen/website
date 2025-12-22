@@ -1,0 +1,17 @@
+---
+import { NAVIGATION_LINKS } from '../utils/constants';
+
+const { year = new Date().getFullYear() } = Astro.props;
+---
+
+<footer class={Astro.props.class || ''}>
+  <p class="copyright thin">© {year} <a href="/">Coen Claassen</a></p>
+  <nav>
+    {NAVIGATION_LINKS.map((link) => (
+      <a href={link.href} class="thin" target={link.external ? "_blank" : undefined} rel={link.external ? "noopener noreferrer" : undefined}>
+        {link.label}
+      </a>
+    ))}
+  </nav>
+</footer>
+

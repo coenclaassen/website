@@ -1,0 +1,548 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import LinkedInIcon from "../components/icons/LinkedInIcon.astro";
+import EmailIcon from "../components/icons/EmailIcon.astro";
+import { CURRENT_YEAR, LINKEDIN_URL, EMAIL, TOTAL_SLIDES, SHOWN_SLIDES, ROTATION_DURATION_MS, SLIDE_DURATION_MS } from "../utils/constants";
+---
+
+<style>
+  .hero-section {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    margin-left: calc(-50vw + 50%);
+    margin-right: calc(-50vw + 50%);
+    margin-top: 0;
+    margin-bottom: 0;
+    padding: 0;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    background: black;
+    z-index: 0;
+  }
+
+  .hero-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+  }
+
+  .hero-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.3);
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    padding-left: var(--margin-wrap-left-right);
+    padding-right: var(--margin-wrap-left-right);
+    width: 100%;
+    max-width: 1600px;
+    margin-left: auto;
+    margin-right: auto;
+    box-sizing: border-box;
+  }
+
+  .hero-section .hero {
+    color: white;
+  }
+
+  .rotating-text {
+    position: relative;
+    display: inline-block;
+  }
+
+  .rotating-text-placeholder {
+    opacity: 0;
+    pointer-events: none;
+    user-select: none;
+  }
+
+  .rotating-text-item {
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.5s ease-in-out;
+    pointer-events: none;
+    white-space: normal;
+    line-height: 1.2;
+  }
+
+  .rotating-text-item.active {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+  }
+
+  /* Mobile portrait - one word per line */
+  @media (max-width: 767px) and (orientation: portrait) {
+    .rotating-text-item {
+      white-space: pre-line;
+    }
+  }
+
+  :global(header) {
+    position: absolute !important;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1001 !important;
+    background-color: transparent;
+  }
+
+  /* White hamburger button by default */
+  :global(.menu-toggle) {
+    color: white !important;
+  }
+
+  /* Black cross when mobile menu is open */
+  @media (max-width: 767px) {
+    :global(header.menu-open .menu-toggle) {
+      color: black !important;
+    }
+    
+    :global(header) {
+      padding-top: var(--spacer-2);
+    }
+  }
+
+  /* White menu items and align hamburger on desktop */
+  @media (min-width: 768px) {
+    :global(.desktop-menu a) {
+      color: white !important;
+    }
+
+    :global(header) {
+      padding-right: 0 !important;
+    }
+
+    :global(.menu-toggle) {
+      margin-right: 20px;
+    }
+  }
+
+  .slideshow-section {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    margin-left: calc(-50vw + 50%);
+    margin-right: calc(-50vw + 50%);
+    margin-top: 0;
+    margin-bottom: 0;
+    padding: 0;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    background: black;
+  }
+
+  .slideshow-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+  }
+
+  .slideshow-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  .slideshow-container .slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+  }
+
+  .slideshow-container .slide.active {
+    opacity: 1;
+  }
+
+  .slideshow-content {
+    position: relative;
+    z-index: 2;
+    padding-left: var(--margin-wrap-left-right);
+    padding-right: var(--margin-wrap-left-right);
+    width: 100%;
+    max-width: 1600px;
+    margin-left: auto;
+    margin-right: auto;
+    box-sizing: border-box;
+    transition: opacity 0.3s ease;
+  }
+
+  .slideshow-section:fullscreen .slideshow-content {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .slideshow-section:fullscreen::before {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .slideshow-section h2 {
+    color: white;
+  }
+
+  .slideshow-controls {
+    position: absolute;
+    bottom: 2rem;
+    right: 2rem;
+    z-index: 3;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .slideshow-btn {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: white;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+    padding: 0;
+    margin: 0;
+    font-family: inherit;
+    transition: background 0.2s ease;
+  }
+
+  .slideshow-btn * {
+    line-height: 1;
+  }
+
+  .slideshow-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+  }
+
+  .slideshow-section.spacer-7 {
+    margin-top: var(--spacer-7);
+  }
+
+  .buttons-horizontal {
+    display: flex;
+    flex-direction: row;
+    gap: var(--spacer-2);
+    flex-wrap: wrap;
+  }
+
+  /* On mobile, stack buttons vertically like standalone buttons */
+  @media (max-width: 767px) {
+    .buttons-horizontal {
+      flex-direction: column;
+    }
+  }
+
+  /* Mobile landscape - adjust hero section */
+  @media (orientation: landscape) and (max-height: 600px) and (max-width: 1024px) {
+    .hero-content {
+      padding-top: 2rem;  /* Add some top padding if needed */
+    }
+  }
+</style>
+
+<script define:vars={{ ROTATION_DURATION_MS, TOTAL_SLIDES: SHOWN_SLIDES.length, SLIDE_DURATION_MS }}>
+  // Rotating text functionality
+  function initRotatingText() {
+    const textItems = document.querySelectorAll('.rotating-text-item');
+    const placeholder = document.querySelector('.rotating-text-placeholder');
+    
+    // Early return if no text items found
+    if (textItems.length === 0) return;
+    
+    let currentIndex = 0;
+
+    // On mobile portrait, replace spaces with line breaks for one word per line
+    function formatTextForMobile() {
+      const isMobilePortrait = window.innerWidth <= 767 && window.matchMedia('(orientation: portrait)').matches;
+      
+      if (isMobilePortrait) {
+        textItems.forEach(item => {
+          // Get the text content
+          let html = item.innerHTML;
+          // Replace <br /> tags with spaces
+          html = html.replace(/<br\s*\/?>/gi, ' ');
+          // Replace &nbsp; with regular spaces
+          html = html.replace(/&nbsp;/g, ' ');
+          // Replace all sequences of whitespace (spaces, tabs, etc.) with <br />
+          html = html.replace(/\s+/g, '<br />');
+          // Clean up any leading/trailing <br /> tags
+          html = html.replace(/^(<br\s*\/?>)+|(<br\s*\/?>)+$/gi, '');
+          item.innerHTML = html;
+        });
+        
+        // Also update placeholder
+        if (placeholder) {
+          let html = placeholder.innerHTML;
+          html = html.replace(/<br\s*\/?>/gi, ' ');
+          html = html.replace(/&nbsp;/g, ' ');
+          html = html.replace(/\s+/g, '<br />');
+          html = html.replace(/^(<br\s*\/?>)+|(<br\s*\/?>)+$/gi, '');
+          placeholder.innerHTML = html;
+        }
+      }
+    }
+
+    function rotateText() {
+      // Safety check
+      if (textItems.length === 0) return;
+      
+      // Remove active class from current item
+      if (textItems[currentIndex]) {
+        textItems[currentIndex].classList.remove('active');
+      }
+      
+      // Move to next item
+      currentIndex = (currentIndex + 1) % textItems.length;
+      
+      // Add active class to new item
+      if (textItems[currentIndex]) {
+        textItems[currentIndex].classList.add('active');
+      }
+    }
+
+    // Format text for mobile on load and resize
+    formatTextForMobile();
+    window.addEventListener('resize', formatTextForMobile);
+    window.addEventListener('orientationchange', () => {
+      setTimeout(formatTextForMobile, 100); // Small delay to ensure orientation change is complete
+    });
+
+    // Start rotation
+    setInterval(rotateText, ROTATION_DURATION_MS);
+  }
+
+  // Initialize rotating text when DOM is ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initRotatingText);
+  } else {
+    initRotatingText();
+  }
+
+  // Slideshow functionality
+  let currentSlide = 0;
+  let isPlaying = true;
+  let slideshowInterval = null;
+
+  function initSlideshow() {
+    const slides = document.querySelectorAll('.slide');
+    const prevBtn = document.getElementById('slideshow-prev');
+    const nextBtn = document.getElementById('slideshow-next');
+    const fullscreenBtn = document.getElementById('slideshow-fullscreen');
+    const slideshowSection = document.querySelector('.slideshow-section');
+
+    // Early return if no slides found
+    if (slides.length === 0) return;
+
+    function showSlide(index) {
+      if (slides.length === 0) return;
+      const safeIndex = Math.max(0, Math.min(index, slides.length - 1));
+      slides.forEach((slide, i) => {
+        slide.classList.toggle('active', i === safeIndex);
+      });
+      currentSlide = safeIndex;
+    }
+
+    function nextSlide() {
+      currentSlide = (currentSlide + 1) % TOTAL_SLIDES;
+      showSlide(currentSlide);
+    }
+
+    function prevSlide() {
+      currentSlide = (currentSlide - 1 + TOTAL_SLIDES) % TOTAL_SLIDES;
+      showSlide(currentSlide);
+    }
+
+    function startSlideshow() {
+      if (slideshowInterval) return;
+      isPlaying = true;
+      slideshowInterval = window.setInterval(nextSlide, SLIDE_DURATION_MS);
+    }
+
+    function stopSlideshow() {
+      if (slideshowInterval) {
+        clearInterval(slideshowInterval);
+        slideshowInterval = null;
+      }
+      isPlaying = false;
+    }
+
+    function toggleFullscreen() {
+      if (!document.fullscreenElement) {
+        if (slideshowSection) {
+          // Stop slideshow when entering fullscreen
+          stopSlideshow();
+          slideshowSection.requestFullscreen().catch(err => {
+            console.error('Error attempting to enable fullscreen:', err);
+            // If fullscreen fails, restart slideshow
+            startSlideshow();
+          });
+        }
+      } else {
+        document.exitFullscreen();
+      }
+    }
+
+    // Listen for fullscreen changes to restart slideshow when exiting
+    document.addEventListener('fullscreenchange', () => {
+      if (!document.fullscreenElement) {
+        // Fullscreen exited - restart slideshow and scroll to top of slideshow
+        startSlideshow();
+        if (slideshowSection) {
+          // Scroll to align top of slideshow with top of viewport
+          slideshowSection.scrollIntoView({ behavior: 'auto', block: 'start' });
+        }
+      }
+    });
+
+    if (prevBtn) {
+      prevBtn.addEventListener('click', () => {
+        prevSlide();
+        if (isPlaying) {
+          stopSlideshow();
+          startSlideshow();
+        }
+      });
+    }
+
+    if (nextBtn) {
+      nextBtn.addEventListener('click', () => {
+        nextSlide();
+        if (isPlaying) {
+          stopSlideshow();
+          startSlideshow();
+        }
+      });
+    }
+
+    if (fullscreenBtn) {
+      fullscreenBtn.addEventListener('click', toggleFullscreen);
+    }
+
+    // Start the slideshow
+    startSlideshow();
+  }
+
+  // Initialize when DOM is ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initSlideshow);
+  } else {
+    initSlideshow();
+  }
+</script>
+
+<BaseLayout 
+  title="Coen Claassen"
+  description="Product builder for early and uncertain ideas turning risky concepts into real shippable products."
+>
+  <Header />
+
+  <main style="position: relative;">
+    <section class="hero-section">
+      <video class="hero-video" autoplay muted loop playsinline>
+        <source src="/video.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+      <div class="hero-content">
+        <h1 class="hero bold">
+          <span class="rotating-text" id="rotating-text">
+            <span class="rotating-text-placeholder">Turning fog<br />into products.</span>
+            <span class="rotating-text-item active">Turning fog<br />into products.</span>
+            <span class="rotating-text-item">Ambiguity<br />into&nbsp;momentum.</span>
+            <span class="rotating-text-item">Ideas into<br />prototypes.</span>
+            <span class="rotating-text-item">Conversations<br />into&nbsp;connections.</span>
+          </span>
+        </h1>
+      </div>
+    </section>
+
+    <section class="spacer-7">
+      <h4 class="bold">Curiosity compounds.</h4>
+      <h4 class="thin">I'm testing how far it can take me.</h4>
+      <p class="post-h3 thin spacer-4">I talk to the most interesting people I can find and share what curiosity uncovers - one coffee at the time.</p>
+      <p class="cta spacer-6"><span class="bold">Want to follow along?</span><br class="desktop-only"><span class="thin"> or are you someone I should meet?</span></p>
+      <div class="buttons-horizontal spacer-4">
+        <a href="/coffee" class="btn-grey thin">Explore experiment</a>
+        <a href={LINKEDIN_URL} class="btn-black thin" target="_blank" rel="noopener noreferrer">
+          <LinkedInIcon />
+          Let's connect
+        </a>
+      </div>
+    </section>
+
+    <section class="slideshow-section spacer-7">
+      <div class="slideshow-container">
+        {SHOWN_SLIDES.map((slideNum, i) => (
+          <img 
+            class={`slide ${i === 0 ? 'active' : ''}`}
+            src={`/slides/slide${String(slideNum).padStart(2, '0')}.png`}
+            alt={`Coen Claassen portfolio work ${slideNum}`}
+            data-slide-index={i}
+            loading={i < 3 ? "eager" : "lazy"}
+          />
+        ))}
+      </div>
+      <div class="slideshow-content">
+        <h2 class="bold">13+ years of making<br />impossible products real.</h2>
+      </div>
+      <div class="slideshow-controls">
+        <button type="button" class="slideshow-btn" id="slideshow-prev">‹</button>
+        <button type="button" class="slideshow-btn" id="slideshow-fullscreen">⛶</button>
+        <button type="button" class="slideshow-btn" id="slideshow-next">›</button>
+      </div>
+    </section>
+
+    <section class="spacer-7">
+      <h4 class="bold">I lead where there's<br />no roadmap.</h4>
+      <p class="post-h3 thin spacer-4">Most ideas don't fail in the market.<br class="desktop-only"> They fail earlier - in doubt, risk and resistance.</p>
+      <p class="post-h3 thin">This is where I lean in to turn uncertainty<br class="desktop-only"> into prototypes and momentum.</p>
+      <p class="cta bold spacer-6">Got something bold, unfinished,<br class="desktop-only"> or on the edge of impossible?</p>
+      <a href={`mailto:${EMAIL}`} class="btn-black thin spacer-4">
+        <EmailIcon />
+        Let's talk
+      </a>
+    </section>
+  </main>
+
+  <Footer year={CURRENT_YEAR} class="spacer-7" />
+</BaseLayout>

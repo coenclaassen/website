@@ -1,0 +1,115 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import LinkedInIcon from "../components/icons/LinkedInIcon.astro";
+import { CURRENT_YEAR, LINKEDIN_URL } from "../utils/constants";
+---
+
+<BaseLayout 
+  title="Coen Claassen · About"
+  description="Background and approach of Coen Claassen focused on zero to one product work fast learning and building under uncertainty."
+>
+  <Header />
+
+  <main>
+    <h5 class="bold spacer-8">Hey, I'm Coen. <span class="thin">I turn early, risky ideas into real, manufacturable products.</span></h5>
+    
+    <p class="post-h3 thin spacer-4">Much of my work happens before there's certainty.<br class="desktop-only"> I navigate hard trade-offs early when decisions quietly lock in years of consequence.</p>
+
+    <section class="spacer-6 two-column">
+      <div class="column-left">
+        <h1 class="post-h4 bold">I get things that matter from vision to reality.</h1>
+        <p class="p-grid thin spacer-3">I've taken products from first sketch to certified, production-ready systems by making the work visible long before it was comfortable.</p>
+        <p class="p-grid thin spacer-2">Prototypes are central to how I work. They turn opinions into discussions, and discussions into decisions.</p>
+        <p class="p-grid thin spacer-2">Depending on the situation, I act as a sparring partner, a hands-on builder, or an embedded product lead.</p>
+      </div>
+
+      <div class="column-right">
+        <h1 class="post-h4 bold">Where others hesitate,<br class="desktop-only"> I lean in.</h1>
+        <p class="p-grid thin spacer-3">Breakthrough ideas are born fragile.<br class="desktop-only"> They are too early, too risky, and hard to defend.</p>
+        <p class="p-grid thin spacer-2">Most don't fail in the market.<br class="desktop-only"> They fail earlier – in the fog of doubt, risk, and resistance.</p>
+        <p class="p-grid thin spacer-3">This is where I lean in:</p>
+        <ul class="p-grid thin spacer-2">
+          <li>When teams stall and you need clarity and momentum.</li>
+          <li>When technical, design, and business needs to come together.</li>
+          <li>When you need startup speed and a path to yes.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="spacer-6">
+      <h1 class="cta bold">I find a path to yes<br class="desktop-only"> and build what proves it.</h1>
+      <div class="buttons-stacked spacer-4">
+        <a href="/" class="btn-grey thin">See my work</a>
+        <a href="/work" class="btn-grey thin">How I work</a>
+        <a href={LINKEDIN_URL} class="btn-black thin" target="_blank" rel="noopener noreferrer">
+          <LinkedInIcon />
+          Connect
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <Footer year={CURRENT_YEAR} class="spacer-7" />
+</BaseLayout>
+
+<style>
+  .two-column {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacer-5);
+  }
+
+  .column-left,
+  .column-right {
+    width: 100%;
+  }
+
+  @media (min-width: 768px) {
+    .two-column {
+      flex-direction: row;
+      gap: 0;
+    }
+
+    .column-left {
+      width: 37.5%;
+      padding-right: 2rem;
+    }
+
+    .column-right {
+      width: 62.5%;
+    }
+  }
+
+  /* Buttons side by side */
+  .buttons-stacked {
+    display: flex;
+    flex-direction: row;
+    gap: var(--spacer-2);
+    flex-wrap: wrap;
+  }
+
+  .buttons-stacked button {
+    width: 100%;
+  }
+
+  @media (min-width: 768px) {
+    .buttons-stacked {
+      align-items: flex-start;
+    }
+
+    .buttons-stacked button {
+      width: auto;
+    }
+  }
+
+  /* Add vertical spacing between top and hamburger menu on mobile */
+  @media (max-width: 767px) {
+    :global(header) {
+      padding-top: var(--spacer-2);
+    }
+  }
+
+</style>
+

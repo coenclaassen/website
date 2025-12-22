@@ -1,0 +1,178 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { getCollection } from "astro:content";
+import Footer from "../../components/Footer.astro";
+import LinkedInIcon from "../../components/icons/LinkedInIcon.astro";
+import { getPrevNextEntries, parseMarkdown } from "../../utils/coffee";
+import { CURRENT_YEAR, LINKEDIN_URL } from "../../utils/constants";
+
+export async function getStaticPaths() {
+  const entries = await getCollection("coffee");
+  return entries.map((entry) => ({
+    params: { id: String(entry.data.id) },
+    props: { entry, allEntries: entries }
+  }));
+}
+
+const { entry, allEntries } = Astro.props;
+const d = entry.data;
+
+const { prevEntry, nextEntry } = getPrevNextEntries(allEntries, d.id);
+
+const topic = d.title || d.paragraph1Title || "design and technology";
+const pageTitle = `Curiosity Coffee · ${topic}`;
+const pageDescription = `A conversation on ${topic} exploring how people think decide and turn early ideas into real work.`;
+
+const sections = [
+  { title: d.paragraph1Title, body: d.paragraph1Body },
+  { title: d.paragraph2Title, body: d.paragraph2Body },
+  { title: d.paragraph3Title, body: d.paragraph3Body },
+  { title: d.paragraph4Title, body: d.paragraph4Body }
+].filter(s => s.title?.trim() || s.body?.trim());
+
+---
+
+<BaseLayout 
+  title={pageTitle} 
+  description={pageDescription}
+>
+  <header class="coffee-header">
+    <a href="/coffee">
+      <img src="/icons/curiosityCoffee.svg" alt="Curiosity Coffee" class="coffee-logo" />
+    </a>
+    <a href="/coffee" class="menu">More</a>
+  </header>
+
+  <main>
+    
+    <h1 class="post-h1 bold spacer-5">{d.title}</h1>
+    <h1 class="post-h1 thin spacer-4">{d.name}</h1>
+    
+    <div class="nav-links spacer-5">
+      <div class="nav-column nav-left">
+        {prevEntry && <a href={`/coffee/${prevEntry.data.id}`} class="footer thin">&lt; #{String(prevEntry.data.id).padStart(2, "0")}</a>}
+      </div>
+      <div class="nav-column nav-center">
+        <span class="post-h1 thin">#{String(d.id).padStart(2, "0")}</span>
+      </div>
+      <div class="nav-column nav-right">
+        {nextEntry && <a href={`/coffee/${nextEntry.data.id}`} class="footer thin">#{String(nextEntry.data.id).padStart(2, "0")} &gt;</a>}
+      </div>
+    </div>
+    
+    {sections.map((section, sectionIdx) => (
+      <>
+        {section.title && <h1 class={`post-h4 bold ${sectionIdx === 0 ? 'spacer-3' : 'spacer-5'}`}>{section.title}</h1>}
+        {section.body && parseMarkdown(section.body).map((item, idx, arr) => {
+          const prevItem = idx > 0 ? arr[idx - 1] : null;
+          const isConsecutiveParagraph = prevItem && prevItem.type === 'p' && item.type === 'p';
+          const isParagraphAfterH5 = prevItem && prevItem.type === 'h5' && item.type === 'p';
+          const isFirstParagraphInSection = item.type === 'p' && idx === 0;
+          
+          if (item.type === 'h1') {
+            return <h1 class="post-h4 bold" key={idx}>{item.text}</h1>;
+          } else if (item.type === 'h5') {
+            return <h5 class="post-h5 bold spacer-3" key={idx}>{item.text}</h5>;
+          } else {
+            return <p class={isFirstParagraphInSection ? 'spacer-1' : isParagraphAfterH5 ? 'spacer-1' : isConsecutiveParagraph ? 'spacer-1' : ''} key={idx}>{item.text}</p>;
+          }
+        })}
+      </>
+    ))}
+    
+    <div class="nav-links nav-links-bottom spacer-6">
+      <div class="nav-column nav-left">
+        {prevEntry && <a href={`/coffee/${prevEntry.data.id}`} class="footer thin">&lt; #{String(prevEntry.data.id).padStart(2, "0")}</a>}
+      </div>
+      <div class="nav-column nav-center">
+        <h2 class="post-h2 bold" style="text-align: left;">Want to go deeper?<br class="desktop-only" /> <span class="thin">Or talk it through?</span></h2>
+      </div>
+      <div class="nav-column nav-right">
+        {nextEntry && <a href={`/coffee/${nextEntry.data.id}`} class="footer thin">#{String(nextEntry.data.id).padStart(2, "0")} &gt;</a>}
+      </div>
+    </div>
+    
+    <div class="buttons-container spacer-4">
+      <a href="/coffee" class="btn-grey thin">Explore Curiosity Coffee</a>
+      <a href={LINKEDIN_URL} class="btn-black thin" target="_blank" rel="noopener noreferrer">
+        <LinkedInIcon />
+        Let's connect
+      </a>
+    </div>
+  </main>
+  
+  <Footer year={CURRENT_YEAR} class="spacer-7" />
+</BaseLayout>
+
+<style>
+  main > h1.post-h1,
+  main > p:not(.nav-links),
+  main > h1.post-h4,
+  main > h5.post-h5,
+  .buttons-container {
+    max-width: var(--max-width-coffee);
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .nav-links {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    width: 100%;
+  }
+
+  .nav-column {
+    display: flex;
+  }
+
+  .nav-left {
+    justify-content: flex-start;
+    align-items: center;
+  }
+
+  .nav-center {
+    justify-content: flex-start;
+    align-items: center;
+    max-width: var(--max-width-coffee);
+  }
+
+  @media (min-width: 768px) {
+    .nav-center {
+      width: var(--max-width-coffee);
+    }
+  }
+
+  .nav-right {
+    justify-content: flex-end;
+    align-items: center;
+  }
+
+  .nav-links .footer {
+    font-size: var(--font-size-post-nav);
+  }
+
+  /* Hide previous/next navigation links at bottom on mobile */
+  @media (max-width: 767px) {
+    .nav-links-bottom .nav-left,
+    .nav-links-bottom .nav-right {
+      display: none;
+    }
+    
+    .nav-links-bottom {
+      grid-template-columns: 1fr;
+    }
+    
+    /* Add vertical spacing between buttons on mobile */
+    .buttons-container a.btn-grey + a.btn-black {
+      margin-top: var(--spacer-2);
+      margin-left: 0;
+    }
+  }
+
+  @media (min-width: 768px) {
+    .buttons-container a.btn-grey + a.btn-black {
+      margin-left: var(--spacer-2);
+    }
+  }
+</style>

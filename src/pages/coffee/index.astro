@@ -1,0 +1,41 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { getCollection } from "astro:content";
+import CoffeeGrid from "../../components/CoffeeGrid.astro";
+import Footer from "../../components/Footer.astro";
+import LinkedInIcon from "../../components/icons/LinkedInIcon.astro";
+import { sortEntries } from "../../utils/coffee";
+import { CURRENT_YEAR, LINKEDIN_URL } from "../../utils/constants";
+
+const allEntries = await getCollection("coffee");
+const sortedEntries = sortEntries(allEntries, false);
+
+---
+
+<BaseLayout 
+  title="Curiosity Coffee"
+  description="Conversations with people building new things used to sharpen thinking expand networks and stay close to real work."
+>
+  <header class="coffee-header">
+    <a href="/coffee">
+      <img src="/icons/curiosityCoffee.svg" alt="Curiosity Coffee" class="coffee-logo" />
+    </a>
+    <a href="/coffee/about" class="menu">About</a>
+  </header>
+
+  <main>
+    <h1 class="bold spacer-7">Better ideas begin with better conversations. <span class="thin">Things you only learn by talking to real people.</span></h1>
+    
+    <CoffeeGrid entries={sortedEntries} class="spacer-6" />
+    
+    <section class="spacer-7">
+      <h5 class="bold">Want to follow along? <span class="thin">Or continue the conversation?</span></h5>
+      <a href={LINKEDIN_URL} class="btn-black thin spacer-4" target="_blank" rel="noopener noreferrer">
+        <LinkedInIcon />
+        Let's connect
+      </a>
+    </section>
+  </main>
+
+  <Footer year={CURRENT_YEAR} class="spacer-7" />
+</BaseLayout>
