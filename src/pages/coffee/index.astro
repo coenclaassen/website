@@ -9,7 +9,6 @@ import { CURRENT_YEAR, LINKEDIN_URL } from "../../utils/constants";
 import { getUrl } from "../../utils/url";
 
 const allEntries = await getCollection("coffee");
-const BASE_URL = import.meta.env.BASE_URL;
 const sortedEntries = sortEntries(allEntries, false);
 
 ---
@@ -20,7 +19,7 @@ const sortedEntries = sortEntries(allEntries, false);
 >
   <header class="coffee-header">
     <a href={getUrl("coffee")}>
-      <img src={`${BASE_URL}icons/curiosityCoffee.svg`} alt="Curiosity Coffee" class="coffee-logo" />
+      <img src={getUrl("icons/curiosityCoffee.svg")} alt="Curiosity Coffee" class="coffee-logo" />
     </a>
     <a href={getUrl("coffee/about")} class="menu">About</a>
   </header>

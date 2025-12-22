@@ -4,8 +4,9 @@
  */
 export function getUrl(path: string): string {
   const base = import.meta.env.BASE_URL;
-  // Remove leading slash from path if present, base already has trailing slash
+  // Ensure base ends with / and path doesn't start with /
+  const baseWithSlash = base.endsWith('/') ? base : `${base}/`;
   const cleanPath = path.startsWith('/') ? path.slice(1) : path;
-  return `${base}${cleanPath}`;
+  return `${baseWithSlash}${cleanPath}`;
 }
 

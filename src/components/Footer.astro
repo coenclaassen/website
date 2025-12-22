@@ -8,11 +8,17 @@ const { year = new Date().getFullYear() } = Astro.props;
 <footer class={Astro.props.class || ''}>
   <p class="copyright thin">© {year} <a href={getUrl('')}>Coen Claassen</a></p>
   <nav>
-    {NAVIGATION_LINKS.map((link) => (
-      <a href={link.external ? link.href : getUrl(link.href === '/' ? '' : link.href.slice(1))} class="thin" target={link.external ? "_blank" : undefined} rel={link.external ? "noopener noreferrer" : undefined}>
-        {link.label}
-      </a>
-    ))}
+    {NAVIGATION_LINKS.map((link) => {
+      let href = link.href;
+      if (!link.external && !href.startsWith('mailto:') && !href.startsWith('http')) {
+        href = getUrl(href === '/' ? '' : href.slice(1));
+      }
+      return (
+        <a href={href} class="thin" target={link.external ? "_blank" : undefined} rel={link.external ? "noopener noreferrer" : undefined}>
+          {link.label}
+        </a>
+      );
+    })}
   </nav>
 </footer>
 

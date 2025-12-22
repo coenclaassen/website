@@ -30,8 +30,6 @@ const sections = [
   { title: d.paragraph3Title, body: d.paragraph3Body },
   { title: d.paragraph4Title, body: d.paragraph4Body }
 ].filter(s => s.title?.trim() || s.body?.trim());
-
-const BASE_URL = import.meta.env.BASE_URL;
 ---
 
 <BaseLayout 
@@ -40,7 +38,7 @@ const BASE_URL = import.meta.env.BASE_URL;
 >
   <header class="coffee-header">
     <a href={getUrl("coffee")}>
-      <img src={`${BASE_URL}icons/curiosityCoffee.svg`} alt="Curiosity Coffee" class="coffee-logo" />
+      <img src={getUrl("icons/curiosityCoffee.svg")} alt="Curiosity Coffee" class="coffee-logo" />
     </a>
     <a href={getUrl("coffee")} class="menu">More</a>
   </header>
