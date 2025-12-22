@@ -7,9 +7,6 @@ import { getPrevNextEntries, parseMarkdown } from "../../utils/coffee";
 import { CURRENT_YEAR, LINKEDIN_URL } from "../../utils/constants";
 import { getUrl } from "../../utils/url";
 
-const BASE_URL = import.meta.env.BASE_URL;
----
-
 export async function getStaticPaths() {
   const entries = await getCollection("coffee");
   return entries.map((entry) => ({
@@ -34,6 +31,7 @@ const sections = [
   { title: d.paragraph4Title, body: d.paragraph4Body }
 ].filter(s => s.title?.trim() || s.body?.trim());
 
+const BASE_URL = import.meta.env.BASE_URL;
 ---
 
 <BaseLayout 
@@ -41,10 +39,10 @@ const sections = [
   description={pageDescription}
 >
   <header class="coffee-header">
-    <a href={`${BASE_URL}coffee`}>
+    <a href={getUrl("coffee")}>
       <img src={`${BASE_URL}icons/curiosityCoffee.svg`} alt="Curiosity Coffee" class="coffee-logo" />
     </a>
-    <a href={`${BASE_URL}coffee`} class="menu">More</a>
+    <a href={getUrl("coffee")} class="menu">More</a>
   </header>
 
   <main>
