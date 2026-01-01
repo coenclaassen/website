@@ -1,6 +1,6 @@
 ---
 import { NAVIGATION_LINKS } from '../utils/constants';
-import { getUrl } from '../utils/url';
+import { processNavigationLink } from '../utils/links';
 ---
 
 <header>
@@ -8,13 +8,10 @@ import { getUrl } from '../utils/url';
   <div class="desktop-menu" id="desktop-menu">
     <nav>
       {NAVIGATION_LINKS.map((link) => {
-        let href = link.href;
-        if (!link.external && !href.startsWith('mailto:') && !href.startsWith('http')) {
-          href = getUrl(href === '/' ? '' : href.slice(1));
-        }
+        const processed = processNavigationLink(link);
         return (
-          <a href={href} class="thin" target={link.external ? "_blank" : undefined} rel={link.external ? "noopener noreferrer" : undefined}>
-            {link.label}
+          <a href={processed.href} class="thin" target={processed.target} rel={processed.rel}>
+            {processed.label}
           </a>
         );
       })}
@@ -22,13 +19,10 @@ import { getUrl } from '../utils/url';
   </div>
   <div class="mobile-menu" id="mobile-menu">
     {NAVIGATION_LINKS.map((link) => {
-      let href = link.href;
-      if (!link.external && !href.startsWith('mailto:') && !href.startsWith('http')) {
-        href = getUrl(href === '/' ? '' : href.slice(1));
-      }
+      const processed = processNavigationLink(link);
       return (
-        <a href={href} class="thin" target={link.external ? "_blank" : undefined} rel={link.external ? "noopener noreferrer" : undefined}>
-          {link.label}
+        <a href={processed.href} class="thin" target={processed.target} rel={processed.rel}>
+          {processed.label}
         </a>
       );
     })}

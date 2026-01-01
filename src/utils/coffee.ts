@@ -19,12 +19,13 @@ export function getPrevNextEntries(
   };
 }
 
-export function parseMarkdown(content: string): Array<{ type: 'h1' | 'h5' | 'p', text: string }> {
+export function parseMarkdown(content: string): Array<{ type: 'h1' | 'h5' | 'p' | 'ul', text?: string, items?: string[] }> {
   if (!content) return [];
   
   const lines = content.split('\n');
-  const result: Array<{ type: 'h1' | 'h5' | 'p', text: string }> = [];
+  const result: Array<{ type: 'h1' | 'h5' | 'p' | 'ul', text?: string, items?: string[] }> = [];
   let currentParagraph = '';
+  let currentList: string[] = [];
   
   const flushParagraph = () => {
     if (currentParagraph.trim()) {
@@ -33,26 +34,42 @@ export function parseMarkdown(content: string): Array<{ type: 'h1' | 'h5' | 'p',
     }
   };
   
+  const flushList = () => {
+    if (currentList.length > 0) {
+      result.push({ type: 'ul', items: [...currentList] });
+      currentList = [];
+    }
+  };
+  
   for (const line of lines) {
     const trimmed = line.trim();
     
     if (/^#####\s/.test(trimmed)) {
       flushParagraph();
+      flushList();
       result.push({ type: 'h5', text: trimmed.replace(/^#####\s*/, '') });
     } else if (/^#+\s/.test(trimmed)) {
       flushParagraph();
+      flushList();
       result.push({ type: 'h1', text: trimmed.replace(/^#+\s*/, '') });
     } else if (/^[-*]\s/.test(trimmed)) {
       flushParagraph();
-      result.push({ type: 'p', text: trimmed.replace(/^[-*]\s*/, '') });
+      // Extract bullet text (remove the bullet marker)
+      const bulletText = trimmed.replace(/^[-*]\s*/, '').trim();
+      if (bulletText) {
+        currentList.push(bulletText);
+      }
     } else if (trimmed) {
+      flushList();
       currentParagraph = currentParagraph ? `${currentParagraph} ${trimmed}` : trimmed;
     } else {
       flushParagraph();
+      flushList();
     }
   }
   
   flushParagraph();
+  flushList();
   return result;
 }
 

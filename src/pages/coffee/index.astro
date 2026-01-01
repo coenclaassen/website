@@ -25,12 +25,12 @@ const sortedEntries = sortEntries(allEntries, false);
   </header>
 
   <main>
-    <h1 class="bold spacer-7">Better ideas begin with better conversations. <span class="thin">Things you only learn by talking to real people.</span></h1>
+    <h1 class="bold spacer-7">Better ideas begin with better conversations.<br class="mobile-only"> <span class="thin">Things you only learn by talking to real people.</span></h1>
     
     <CoffeeGrid entries={sortedEntries} class="spacer-6" />
     
     <section class="spacer-7">
-      <h5 class="bold">Want to follow along? <span class="thin">Or continue the conversation?</span></h5>
+      <h5 class="bold">Want to follow along?<br class="desktop-only"> <span class="thin">Or continue the conversation?</span></h5>
       <a href={LINKEDIN_URL} class="btn-black thin spacer-4" target="_blank" rel="noopener noreferrer">
         <LinkedInIcon />
         Let's connect

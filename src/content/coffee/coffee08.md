@@ -62,4 +62,14 @@ paragraph4Body: |
   I admired how he built independence step by step. No investors, no chase for hyper-growth. He is just creating on his own terms. Independence doesn’t require quitting a job; it starts with small, consistent experiments.
 
   ##### Balance between output and recharge
-  His rhythm of intense bursts of work followed by long pauses to think, hit home. I’ve been running fast lately, but maybe creativity isn’t constant motion; it
+  His rhythm of intense bursts of work followed by long pauses to think, hit home. I’ve been running fast lately, but maybe creativity isn’t constant motion; it’s knowing when to breathe.
+  
+  ##### The sales-channel insight
+  “Finding the right place to sell” stuck with me. A product isn’t real until someone uses it. The loop only closes when people interact with what we make. That’s where learning begins.
+
+  ##### Designers as doers, not perfectionists
+  The conversation made me more aware of my tendency to over-refine. Validation doesn’t happen in SolidWorks or PowerPoint. It happens in the real world, with users and buyers.
+  
+  ##### Motivation to ship my own work
+  I walked away buzzing and motivated to finish my website and share more of what I do. That conversation flipped something: curiosity only matters if it leaves the notebook and makes it into the world.
+

@@ -115,25 +115,7 @@ import { CURRENT_YEAR, EMAIL } from "../utils/constants";
   <Footer year={CURRENT_YEAR} class="spacer-7" />
 
   <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      const toggleHeaders = document.querySelectorAll('.toggle-header');
-      
-      toggleHeaders.forEach(header => {
-        header.addEventListener('click', function() {
-          const targetId = this.getAttribute('data-target');
-          const content = document.getElementById(targetId);
-          const icon = this.querySelector('.toggle-icon');
-          
-          if (content.style.display === 'none') {
-            content.style.display = 'block';
-            icon.classList.add('expanded');
-          } else {
-            content.style.display = 'none';
-            icon.classList.remove('expanded');
-          }
-        });
-      });
-    });
+    import '../scripts/toggle.ts';
   </script>
 </BaseLayout>
 

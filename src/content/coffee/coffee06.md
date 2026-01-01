@@ -92,9 +92,9 @@ paragraph4Body: |
   ##### Creativity lives between disciplines
   DDW showed us the full spectrum — from conceptual art to retail-ready products. Real design lives exactly between those poles.
 
-  - Emotion ↔ logic
-  - Vision ↔ feasibility
-  - Provocation ↔ production
+  - Emotion ━━ Logic
+  - Vision ━━ Feasibility
+  - Provocation ━━ Production
 
   That tension is where interesting things happen.
 

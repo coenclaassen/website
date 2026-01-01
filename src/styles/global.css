@@ -1,24 +1,24 @@
 :root {
   /* Font sizes - Mobile (default) */
-  --font-size-hero: 48px;
-  --font-size-h1: 48px;
-  --font-size-h2: 48px;
-  --font-size-h3: 34px;
-  --font-size-h4: 48px;
-  --font-size-h5: 40px;
-  --font-size-post-h1: 34px;
-  --font-size-post-h2: 28px;
-  --font-size-cta: 40px;
-  --font-size-post-h3: 22.5px;
-  --font-size-post-h4: 27px;
-  --font-size-post-h5: 19px;
-  --font-size-post-nav: 27px;
-  --font-size-button: 17px;
-  --font-size-p-grid: 17px;
+  --font-size-hero: 36px;
+  --font-size-h1: 30px;
+  --font-size-h2: 30px;
+  --font-size-h3: 24px;
+  --font-size-h4: 24px;
+  --font-size-h5: 24px;
+  --font-size-post-h1: 24px;
+  --font-size-post-h2: 24px;
+  --font-size-cta: 22px;
+  --font-size-post-h3: 20px;
+  --font-size-post-h4: 20px;
+  --font-size-post-h5: 18px;
+  --font-size-post-nav: 16px;
+  --font-size-button: 16px;
+  --font-size-p-grid: 16px;
   --font-size-footer: 15px;
   --font-size-copyright: 14px;
-  --font-size-p: 14px;
-  --font-size-menu: 20px;
+  --font-size-p: 16px;
+  --font-size-menu: 16px;
 
   /* Font weights */
   --font-weight-thin: 300;
@@ -29,18 +29,18 @@
   --margin-wrap-left-right: 5vw;
   --max-width-coffee: 720px;
 
-  /* Vertical spacers */
-  --spacer-1: 0.5rem;
-  --spacer-2: 1rem;
-  --spacer-3: 2rem;
-  --spacer-4: 3.5rem;
-  --spacer-5: 6rem;
-  --spacer-6: 8rem;
-  --spacer-7: 12rem;
-  --spacer-8: 16rem;
+  /* Vertical spacers - Mobile (default) */
+  --spacer-1: 0.6rem;
+  --spacer-2: 0.8rem;
+  --spacer-3: 1rem;
+  --spacer-4: 1.75rem;
+  --spacer-5: 5rem;
+  --spacer-6: 5.5rem;
+  --spacer-7: 5.5rem;
+  --spacer-8: 7rem;
 }
 
-/* Desktop font sizes */
+/* Desktop font sizes and spacing */
 @media (min-width: 768px) {
   :root {
     --font-size-hero: 130px;
@@ -60,6 +60,16 @@
     --font-size-p-grid: 20px;
     --font-size-footer: 14px;
     --font-size-p: 18px;
+    
+    /* Vertical spacers - Desktop */
+    --spacer-1: 0.5rem;
+    --spacer-2: 1rem;
+    --spacer-3: 2rem;
+    --spacer-4: 3.5rem;
+    --spacer-5: 6rem;
+    --spacer-6: 8rem;
+    --spacer-7: 12rem;
+    --spacer-8: 16rem;
   }
 }
 
@@ -67,22 +77,22 @@
 /* Targets landscape orientation on mobile devices (height < 600px) but not desktop */
 @media (orientation: landscape) and (max-height: 600px) and (max-width: 1024px) {
   :root {
-    --font-size-hero: 70px;        /* down from 48px, ~25% reduction */
-    --font-size-h1: 48px;          /* down from 48px */
-    --font-size-h2: 52px;          /* down from 48px */
-    --font-size-h3: 48px;          /* down from 34px */
-    --font-size-h4: 54px;          /* down from 48px */
-    --font-size-h5: 54px;          /* down from 40px */
-    --font-size-post-h1: 28px;     /* down from 34px */
-    --font-size-post-h2: 24px;     /* down from 28px */
-    --font-size-cta: 40px;         /* down from 40px */
-    --font-size-post-h3: 30px;     /* down from 22.5px */
-    --font-size-post-h4: 24px;     /* down from 27px */
-    --font-size-post-h5: 17px;     /* down from 19px */
-    --font-size-post-nav: 24px;    /* down from 27px */
-    --font-size-button: 16px;      /* down from 17px */
-    --font-size-p-grid: 16px;     /* down from 17px */
-    --font-size-p: 13px;           /* down from 14px */
+    --font-size-hero: 70px;        /* adjusted for landscape */
+    --font-size-h1: 48px;          /* adjusted for landscape */
+    --font-size-h2: 52px;          /* adjusted for landscape */
+    --font-size-h3: 48px;          /* adjusted for landscape */
+    --font-size-h4: 54px;          /* adjusted for landscape */
+    --font-size-h5: 54px;          /* adjusted for landscape */
+    --font-size-post-h1: 28px;     /* adjusted for landscape */
+    --font-size-post-h2: 24px;     /* same as mobile base */
+    --font-size-cta: 40px;         /* adjusted for landscape */
+    --font-size-post-h3: 30px;     /* adjusted for landscape */
+    --font-size-post-h4: 24px;     /* adjusted for landscape */
+    --font-size-post-h5: 17px;     /* adjusted for landscape */
+    --font-size-post-nav: 24px;    /* adjusted for landscape */
+    --font-size-button: 16px;      /* same as mobile base */
+    --font-size-p-grid: 16px;     /* same as mobile base */
+    --font-size-p: 13px;           /* adjusted for landscape */
   }
 }
 
@@ -98,14 +108,6 @@ body {
 /* Links: no underline by default, show on hover, neutral colors */
 a {
   text-decoration: none;
-  color: inherit;
-}
-
-a:visited {
-  color: inherit;
-}
-
-a:active {
   color: inherit;
 }
 
@@ -141,7 +143,7 @@ header {
 }
 
 .coffee-logo {
-  width: 220px;
+  width: 160px;
   height: auto;
   display: block;
 }
@@ -348,7 +350,7 @@ button.btn-grey,
 a.btn-grey {
   background-color: #E5E5E5;
   color: #000000;
-  padding: 1rem 2rem;
+  padding: 0.875rem 2rem;
   border-radius: 9999px;
   font-size: var(--font-size-button);
   font-weight: var(--font-weight-button);
@@ -372,7 +374,7 @@ a.btn-black,
 a.btn-primary {
   background-color: #000000;
   color: #FFFFFF;
-  padding: 1rem 2rem;
+  padding: 0.875rem 2rem;
   border-radius: 9999px;
   font-size: var(--font-size-button);
   font-weight: var(--font-weight-button);
@@ -452,18 +454,6 @@ footer a,
 .footer {
   font-size: var(--font-size-footer);
   line-height: 1.4;
-}
-
-@media (max-width: 767px) {
-  footer {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0;
-  }
-
-  footer nav {
-    width: 100%;
-  }
 }
 
 /* Copyright */
@@ -575,8 +565,25 @@ section {
   }
 }
 
+/* Mobile-only utility for line breaks */
+.mobile-only {
+  display: block;
+}
+
+@media (min-width: 768px) {
+  .mobile-only {
+    display: none;
+  }
+}
+
 /* Footer mobile layout: nav first, then copyright */
 @media (max-width: 767px) {
+  footer {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0;
+  }
+
   footer.spacer-7 {
     margin-top: var(--spacer-6);
   }
@@ -585,7 +592,9 @@ section {
     order: 1;
     flex-direction: column;
     align-items: flex-start;
-    gap: var(--spacer-1);
+    gap: var(--spacer-3);
+    margin-top: var(--spacer-6);
+    width: 100%;
   }
 
   footer nav a {
@@ -595,6 +604,6 @@ section {
 
   footer .copyright {
     order: 2;
-    margin-top: var(--spacer-3);
+    margin-top: var(--spacer-7);
   }
 }

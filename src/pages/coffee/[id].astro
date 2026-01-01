@@ -73,9 +73,18 @@ const sections = [
             return <h1 class="post-h4 bold" key={idx}>{item.text}</h1>;
           } else if (item.type === 'h5') {
             return <h5 class="post-h5 bold spacer-3" key={idx}>{item.text}</h5>;
-          } else {
+          } else if (item.type === 'ul' && item.items) {
+            return (
+              <ul class="thin spacer-2" key={idx}>
+                {item.items.map((listItem, listIdx) => (
+                  <li key={listIdx}>{listItem}</li>
+                ))}
+              </ul>
+            );
+          } else if (item.type === 'p' && item.text) {
             return <p class={isFirstParagraphInSection ? 'spacer-1' : isParagraphAfterH5 ? 'spacer-1' : isConsecutiveParagraph ? 'spacer-1' : ''} key={idx}>{item.text}</p>;
           }
+          return null;
         })}
       </>
     ))}
@@ -109,10 +118,22 @@ const sections = [
   main > p:not(.nav-links),
   main > h1.post-h4,
   main > h5.post-h5,
+  main > ul,
   .buttons-container {
     max-width: var(--max-width-coffee);
     margin-left: auto;
     margin-right: auto;
+  }
+
+  main > ul {
+    font-size: var(--font-size-p);
+    line-height: 1.6;
+    margin-top: var(--spacer-1);
+    margin-bottom: var(--spacer-1);
+  }
+
+  main > ul li {
+    font-size: var(--font-size-p);
   }
 
   .nav-links {
