@@ -46,7 +46,13 @@ const sections = [
   <main>
     
     <h1 class="post-h1 bold spacer-5">{d.title}</h1>
-    <h1 class="post-h1 thin spacer-4">{d.name}</h1>
+    {d.website ? (
+      <h1 class="post-h1 thin spacer-4">
+        <a href={d.website} target="_blank" rel="noopener noreferrer">{d.name}</a>
+      </h1>
+    ) : (
+      <h1 class="post-h1 thin spacer-4">{d.name}</h1>
+    )}
     
       <div class="nav-links spacer-5">
       <div class="nav-column nav-left">

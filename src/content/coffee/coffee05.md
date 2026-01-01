@@ -22,7 +22,7 @@ paragraph2Body: |
 
 paragraph3Title: "What we talked about"
 paragraph3Body: |
-  ##### From Limitation to Creation
+  ##### From limitation to Creation
   Her story started with an interest in 3D-printed food. Jillian explained how this technology is finding its way into kitchens and changing how people experience food — shifting from experimental novelty to daily practice. Imagine having your dessert printed while you eat your main course. She realized 3D printing could tailor food to individuals, layering story and personalization into something edible, one layer at a time.
 
   ##### From limitation to strength
