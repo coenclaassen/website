@@ -105,7 +105,7 @@ paragraph4Body: |
   This is my superpower, my vision — and it’s time I own it.
 
   ##### Founder mindset
-  What stayed with me most was how calmly Iris received the rejection. No drama, no frustration. Just a short pause, an honest acknowledgement, and then: moving on.
+  What stayed with me most was how calmly Iris received the rejection. No drama, no frustration. Just a short pause, an honest acknowledgment, and then: moving on.
 
   It made me realize how much of founder life is learning to absorb “no” without letting it define you. You have to take many shots before one lands. Rejection isn’t a sign you’re doing it wrong; it’s often a sign you’re in the arena.
 

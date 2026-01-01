@@ -16,9 +16,9 @@ paragraph2Title: "What he does"
 paragraph2Body: |
   Bart designs for two completely different worlds.
 
-  By day, he creates large-scale plastic storage boxes. Objects millions of people use but rarely notice. By night, he designs bespoke race-car liveries, full of colour, motion, and emotion.
+  By day, he creates large-scale plastic storage boxes. Objects millions of people use but rarely notice. By night, he designs bespoke race-car liveries, full of color, motion, and emotion.
 
-  He once dreamed of becoming a car designer but realised he wasn’t the type to spend weeks sketching headlight variations. Balancing this expensive work with more functional work in storage box design keeps him engaged and creatively sharp.
+  He once dreamed of becoming a car designer but realized he wasn't the type to spend weeks sketching headlight variations. Balancing this expensive work with more functional work in storage box design keeps him engaged and creatively sharp.
 
   Even though storage boxes look simple, he explained, designing something genuinely new is incredibly challenging. The company has been refining these products for over 40 years, so every small innovation has to earn its place. User research, insight, and creativity all matter. It’s not about adding features for novelty; it’s about finding something worthy of production in a saturated category.
 
@@ -31,14 +31,14 @@ paragraph3Body: |
 
   It’s a field where everyone has an opinion. “It’s not the first time I’ve heard, ‘my wife doesn’t like the color,’” he joked. The craft is balancing feedback, brand expectations, and his own creative integrity. Over time, he’s building his distinctive visual style and eventually people will come to him for that.
 
-  His journey into livery design started years ago when he joined a Red Bull design competition “just for fun.” To his surprise, he finished in the top five two years in a row. That’s when he realised he was onto something and he’s been creating race-car graphics ever since.
+  His journey into livery design started years ago when he joined a Red Bull design competition "just for fun." To his surprise, he finished in the top five two years in a row. That's when he realized he was onto something and he's been creating race-car graphics ever since.
 
   ##### Wrapping 2D graphics around 3D forms
   Translating flat graphics onto curved car bodies is anything but straightforward. Race cars almost never have flat surfaces. Bart spent hours thinking about how lines would flow across curves, where seams would meet, how 2D shapes would 3D motion.
 
   When the professional wrappers installed his design, they complimented how precise and “wrap-friendly” it was. Everything lined up perfectly and it all comes together. “Extremely satisfying” he said smiling.
 
-  I recognised that feeling immediately. In my own work, there’s something magical about seeing things work: snapping together parts fresh from the printer; holding the first injection-moulded sample; watching code perform exactly as intended. This is the quiet joy of design. It’s when thinking turns tangible.
+  I recognized that feeling immediately. In my own work, there's something magical about seeing things work: snapping together parts fresh from the printer; holding the first injection-molded sample; watching code perform exactly as intended. This is the quiet joy of design. It's when thinking turns tangible.
 
   It echoed my earlier conversation with Yvonne: behind everything that feels effortless, there’s usually a mess someone quietly mastered. The magic of design lies in making complexity look simple and the hard stuff invisible.
 
