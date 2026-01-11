@@ -83,12 +83,12 @@ const sections = [
             return (
               <ul class="thin spacer-2" key={idx}>
                 {item.items.map((listItem, listIdx) => (
-                  <li key={listIdx}>{listItem}</li>
+                  <li key={listIdx} set:html={listItem}></li>
                 ))}
               </ul>
             );
           } else if (item.type === 'p' && item.text) {
-            return <p class={isFirstParagraphInSection ? 'spacer-1' : isParagraphAfterH5 ? 'spacer-1' : isConsecutiveParagraph ? 'spacer-1' : ''} key={idx}>{item.text}</p>;
+            return <p class={isFirstParagraphInSection ? 'spacer-1' : isParagraphAfterH5 ? 'spacer-1' : isConsecutiveParagraph ? 'spacer-1' : ''} key={idx} set:html={item.text}></p>;
           }
           return null;
         })}
@@ -140,6 +140,17 @@ const sections = [
 
   main > ul li {
     font-size: var(--font-size-p);
+  }
+
+  /* Style links in markdown content - use :global() because set:html content isn't scoped */
+  :global(main p a),
+  :global(main ul li a) {
+    text-decoration: underline !important;
+  }
+
+  :global(main p a:hover),
+  :global(main ul li a:hover) {
+    text-decoration: underline !important;
   }
 
   .nav-links {

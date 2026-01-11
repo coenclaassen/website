@@ -6,6 +6,13 @@ export function sortEntries(entries: CollectionEntry<"coffee">[], ascending = fa
   );
 }
 
+/**
+ * Converts markdown links [text](url) to HTML anchor tags
+ */
+function parseMarkdownLinks(text: string): string {
+  return text.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer">$1</a>');
+}
+
 export function getPrevNextEntries(
   entries: CollectionEntry<"coffee">[],
   currentId: number
@@ -29,14 +36,14 @@ export function parseMarkdown(content: string): Array<{ type: 'h1' | 'h5' | 'p' 
   
   const flushParagraph = () => {
     if (currentParagraph.trim()) {
-      result.push({ type: 'p', text: currentParagraph.trim() });
+      result.push({ type: 'p', text: parseMarkdownLinks(currentParagraph.trim()) });
       currentParagraph = '';
     }
   };
   
   const flushList = () => {
     if (currentList.length > 0) {
-      result.push({ type: 'ul', items: [...currentList] });
+      result.push({ type: 'ul', items: currentList.map(item => parseMarkdownLinks(item)) });
       currentList = [];
     }
   };

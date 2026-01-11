@@ -28,6 +28,7 @@ paragraph3Body: |
   ##### About the hidden complexity behind “simple” products
   She dropped the phrase “Hoe moeilijk kan het zijn?”
   We both laughed because the answer is always: much harder than you think.
+  There’s even a [book](https://www.jaspervankuijk.nl/boek-hoe-moeilijk-kan-het-zijn/) about that exact statement. Which says enough about how often we underestimate complexity.
 
   Circular design sounds simple on paper: “just recycle it.”
   But she explained what really happens:
