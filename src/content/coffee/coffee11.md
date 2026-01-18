@@ -20,7 +20,7 @@ paragraph1Body: |
 
 paragraph2Title: "What she does"
 paragraph2Body: |
-  Marina created the [Fashion Tech Farm](https://fashiontechfarm.com/). The name sounds odd at first: fashion, tech, and farm. But once you’re inside, it makes sense.
+  Marina created the Fashion Tech Farm. The name sounds odd at first: fashion, tech, and farm. But once you’re inside, it makes sense.
 
   This isn’t just a production space. And it’s not an office pretending to be creative. It’s a place to experiment. To try ideas early. To turn curiosity into something tangible.
 
@@ -46,7 +46,7 @@ paragraph3Body: |
 
   She prefers iteration over polish. Making something imperfect is better than talking about a perfect version that doesn’t exist. Learning only starts once there is something real on the table. Until then, everything is theoretical.
 
-  That mindset is embedded in how the [Fashion Tech Farm](https://fashiontechfarm.com/) works. Tools are visible. Materials are accessible. The environment nudges you toward action.
+  That mindset is embedded in how the Fashion Tech Farm works. Tools are visible. Materials are accessible. The environment nudges you toward action.
 
   ##### Why people get stuck
   According to Marina, most people don’t struggle with ideas. They struggle with the transition. The step from designing, optimizing, and discussing to actually making.
