@@ -3,7 +3,7 @@ id: 9
 name: "Iris Bekkers"
 title: "A different lens changes everything."
 date: "2025-12-03"
-website: "https://www.instagram.com/irisamberdesign"
+website: "https://www.operatieregeneratie.nl/"
 location: "Eindhoven, TU/e Alpha, Iris' studio"
 
 paragraph1Title: "Setting the scene"
