@@ -1,12 +1,12 @@
 ---
 id: 12
-name: Kyenno Scheepers
-title: No user win, no working system
-date: 19-dec-2025
-website: Kyenno Scheepers
-location: Anne & Max, Strijp-S, Eindhoven
+name: "Kyenno Scheepers"
+title: "No user win, no working system"
+date: "2025-12-19"
+website: "https://www.tudelft.nl/io/over-io/personen/scheepers-ksfa"
+location: "Anne & Max, Strijp-S, Eindhoven"
 
-paragraph1Title: Setting the scene
+paragraph1Title: "Setting the scene"
 paragraph1Body: |
   We met at Anna & Max in Strijp-S on a quiet Friday afternoon, just before the Christmas break. We sat down in low lounge chairs near the window, looking out onto a calm street where only the occasional passerby broke the stillness.
   
@@ -18,13 +18,13 @@ paragraph1Body: |
   
   A good setting for a conversation that didn’t *rush*.
 
-paragraph2Title: What he does
+paragraph2Title: "What he does"
 paragraph2Body: |
   Kyenno Scheepers is a PhD candidate at TU Delft, researching Reusable Packaging Systems Innovation and Design. His work sits at the intersection of sustainability, design, logistics, and human behavior. Not just how packaging should work in theory, but how entire systems behave once they meet real users, real incentives, and real constraints. It is a topic that is not only interesting, but one that will likely change what we find in supermarkets in the future.
   
   Outside of this complex research topic, we also geeked out on video games, building PCs, rising hardware prices, and our latest insights on AI and how to apply it effectively.
 
-paragraph3Title: What we talked about
+paragraph3Title: "What we talked about"
 paragraph3Body: |
   ##### When reuse backfires
   One example Kyenno shared stuck with me. In the past, some PET bottles were designed to be robust enough to refill many times. They worked so well that people started using them far beyond their original purpose. Storing petrol, mixing fertilizer, all kinds of secondary uses. The problem is that when one of those bottles re-enters the reuse stream, it can contaminate the entire batch. One wrong bottle is enough to ruin everything.
@@ -50,7 +50,7 @@ paragraph3Body: |
   
   We talked about that shared urge to really understand how things work, and the frustration of not being able to let something go until you do. And also the flip side. Once you fully understand the mechanism, curiosity fades and attention moves on to the next thing. That *restless* curiosity can be uncomfortable. But in complex systems, it is often exactly what allows designers to connect dots across disciplines instead of staying safely within one lane.
 
-paragraph4Title: Reflections
+paragraph4Title: "Reflections"
 paragraph4Body: |
   ##### Designing systems still starts with the user
   No matter how advanced a system is, reusable, circular, or cost efficient, it only works if the user clearly wins. Time saved. Food kept fresh longer. Less effort. Miss that, and the rest of the system never gets a chance to succeed.
