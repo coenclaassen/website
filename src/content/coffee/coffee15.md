@@ -1,7 +1,7 @@
 ---
 id: 15
 name: "Minne Zeijdner"
-title: "Change happens in the room."
+title: "Change happens inside the room."
 date: "2026-02-11"
 website: "https://minneworks.nl/"
 location: "Fashion Tech Farm, Eindhoven"
